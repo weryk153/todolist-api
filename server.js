@@ -4,7 +4,9 @@ const koaBody = require('koa-body');
 const cors = require('@koa/cors');
 
 const app = new Koa();
-const router = new Router();
+const router = new Router({
+  prefix: '/todos'
+});
 
 app.use(koaBody());
 app.use(cors());
@@ -13,10 +15,10 @@ let todoId = 0;
 let todolist = [];
 
 router
-    .get('/todos', ctx => {
+    .get('/', ctx => {
       ctx.body = JSON.stringify(todolist, null, 2);
     })
-    .get('/todos/:id', ctx => {
+    .get('/:id', ctx => {
       // 把資料分別存在 id 變數
       const id = parseInt(ctx.params.id);
       if (id) {
@@ -35,7 +37,7 @@ router
         ctx.status = 404;
       }
     })
-    .delete('/todos/:id', ctx => {
+    .delete('/:id', ctx => {
       // 把資料分別存在 id 變數
       const id = parseInt(ctx.params.id);
       if (id) {
@@ -54,7 +56,7 @@ router
         ctx.status = 404;
       }
     })
-    .post('/todos', ctx => {
+    .post('/', ctx => {
       const { content } = ctx.request.body;
       if(content) {
         todolist.push({
@@ -69,7 +71,7 @@ router
         ctx.status = 400;
       }
     })
-    .patch('/todos/:id', ctx => {
+    .patch('/:id', ctx => {
       const id = parseInt(ctx.params.id);
       const { content } = ctx.request.body;
       if(content) {        

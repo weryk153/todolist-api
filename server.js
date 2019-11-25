@@ -1,15 +1,17 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const koaBody = require('koa-body');
+const cors = require('@koa/cors');
 
 const app = new Koa();
 const router = new Router();
 
 app.use(koaBody());
+app.use(cors());
 
 let todoId = 0;
-let todolist = [
-];
+let todolist = [];
+
 router
     .get('/todos', ctx => {
       ctx.body = JSON.stringify(todolist, null, 2);

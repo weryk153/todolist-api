@@ -5,11 +5,14 @@
   "main": "server.js",
   "dependencies": {
     "@koa/cors": "^2.2.3",
+    "circular-json": "^0.5.9",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-bodyparser": "^4.2.1",
+    "koa-mongo": "^1.9.0",
     "koa-morgan": "^1.0.1",
     "koa-router": "^7.4.0",
+    "mongodb": "^3.3.5",
     "nodemon": "^2.0.1"
   },
   "devDependencies": {},
